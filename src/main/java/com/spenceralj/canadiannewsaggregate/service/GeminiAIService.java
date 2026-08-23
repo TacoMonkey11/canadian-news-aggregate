@@ -14,40 +14,41 @@ public class GeminiAIService {
         this.client = chatClientBuilder.build();
     }
 
-    public NewsArticle.TriageDecision triage(NewsArticle article) {
-        String triagePrompt = """
+    public NewsArticle.Analysis analyze(NewsArticle article) {
+        String prompt = """
                 You are an expert Canadian public policy and legislative analyst.
-                Analyze the following press release / news article to determine if it represents a significant policy, legislative, regulatory, or major infrastructure announcement in Canada.
+                Analyze the following Canadian news item or government press release.
 
                 Article Details:
                 - Source: {source}
                 - Title: {title}
-                - Summary/Description: {description}
+                - Content/Description: {description}
 
-                Evaluation Criteria:
-                1. HIGH RELEVANCE (Score 7-10, isRelevant = true):
-                   - Introduction or passage of new federal or provincial bills/legislation.
-                   - New or amended regulations, statutory orders, or policy directives.
-                   - Major public funding or infrastructure commitments (e.g. transit, housing, energy, healthcare capital).
-                   - Major trade, taxation, or economic policy updates.
+                Tasks:
+                1. RELEVANCE CHECK (`isRelevant`):
+                   - Set `isRelevant = true` IF this represents genuine public policy, new or amended legislation/bills, regulatory updates, major public infrastructure/funding, taxation, or national/provincial governance.
+                   - Set `isRelevant = false` IF this is routine operational noise (e.g., local ribbon-cuttings, minor committee appointments, partisan political campaigning/rhetoric, ceremonial awards, or general public awareness notices).
 
-                2. LOW RELEVANCE (Score 1-5, isRelevant = false):
-                   - Routine administrative notices or minor committee appointments.
-                   - Local ribbon-cuttings, awards, or commemorative day proclamations.
-                   - Political party campaigning, partisan commentary, or opinion pieces.
-                   - General public awareness campaigns without policy or regulatory changes.
+                2. PLAIN-ENGLISH SUMMARY (`tldr`):
+                   - If `isRelevant = true`, write a concise 1-2 sentence plain-English summary explaining what is changing, who is affected, and why it matters. Avoid bureaucratic jargon.
+                   - If `isRelevant = false`, return an empty string "".
 
-                Evaluate the article objectively and output your triage decision.
+                3. SECTOR TAGS (`tags`):
+                   - If `isRelevant = true`, select 1 to 3 tags STRICTLY from this approved list (do not create custom tags or use ampersands):
+                     ["Housing", "Real Estate", "Energy", "Environment", "Economy", "Taxation", 
+                      "Infrastructure", "Transit", "Healthcare", "Agriculture", "Trade", 
+                      "Foreign Affairs", "Public Safety", "Justice", "Indigenous Affairs", 
+                      "Technology", "Telecommunications", "Labour", "Immigration", "Defence"]
+                   - If `isRelevant = false`, return an empty list [].
                 """;
 
         return client.prompt()
-                .user(u -> u.text(triagePrompt)
+                .user(u -> u.text(prompt)
                         .param("source", article.source().name())
                         .param("title", article.title())
                         .param("description", article.description()))
                 .call()
-                .entity(NewsArticle.TriageDecision.class);
+                .entity(NewsArticle.Analysis.class);
     }
-
 
 }

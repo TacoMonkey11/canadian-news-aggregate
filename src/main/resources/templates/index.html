@@ -18,7 +18,6 @@
             <h2 th:text="${article.title}">Article Title</h2>
             <p>
                 <strong>Source:</strong> <span th:text="${article.sourceName}">Source</span> |
-                <strong>Score:</strong> <span th:text="${article.significanceScore}">0</span> |
                 <strong>Date:</strong> <span th:text="${article.publishedDate}">Date</span>
             </p>
             <p th:if="${article.aiSummary != null}" th:text="${article.aiSummary}">Summary text...</p>

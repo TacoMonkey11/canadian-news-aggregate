@@ -7,7 +7,6 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -28,7 +27,7 @@ public class NewsAggregateService {
                 continue;
             }
 
-            NewsArticle.TriageDecision decision = aiService.triage(article);
+            NewsArticle.Analysis decision = aiService.analyze(article);
 
             if (!decision.isRelevant()) {
                 log.info("{} |:| Not relevant enough!", article.title());
@@ -40,7 +39,7 @@ public class NewsAggregateService {
                     .title(article.title())
                     .sourceName(source.name())
                     .publishedDate(article.publishedDate())
-                    .significanceScore(decision.significanceScore())
+                    .aiSummary(decision.tldr())
                     .createdAt(LocalDateTime.now())
                     .build());
         }

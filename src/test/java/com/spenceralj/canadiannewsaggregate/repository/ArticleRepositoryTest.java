@@ -28,7 +28,6 @@ class ArticleRepositoryTest {
                 .link(testLink)
                 .sourceName("Infrastructure Canada")
                 .publishedDate(new Date())
-                .significanceScore(8)
                 .aiSummary("Federal government announces major highway and transit investments.")
                 .createdAt(LocalDateTime.now())
                 .build();

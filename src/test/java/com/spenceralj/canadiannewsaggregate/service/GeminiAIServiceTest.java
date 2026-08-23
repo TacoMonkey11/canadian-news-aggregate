@@ -29,11 +29,14 @@ class GeminiAIServiceTest {
                 "This enactment amends the Greenhouse Gas Pollution Pricing Act to expand the definition of eligible farming machinery and provide exemptions from the carbon price for qualifying agricultural operations."
         );
 
-        NewsArticle.TriageDecision decision = geminiAIService.triage(article);
+        NewsArticle.Analysis analysis = geminiAIService.analyze(article);
 
-        assertNotNull(decision, "Triage decision should not be null");
-        assertTrue(decision.isRelevant(), "Major federal bill amendment should be marked as relevant");
-        assertTrue(decision.significanceScore() >= 6, "Significance score should be >= 6, was: " + decision.significanceScore());
+        assertNotNull(analysis, "Analysis should not be null");
+        assertTrue(analysis.isRelevant(), "Major federal bill amendment should be marked as relevant");
+        assertNotNull(analysis.tldr(), "TLDR summary should not be null");
+        assertFalse(analysis.tldr().isBlank(), "TLDR summary should not be blank");
+        assertNotNull(analysis.tags(), "Tags should not be null");
+        assertFalse(analysis.tags().isEmpty(), "Tags list should not be empty");
     }
 
     @Test
@@ -48,10 +51,10 @@ class GeminiAIServiceTest {
                 "The Minister met with local residents and volunteers this morning at the community centre to celebrate the annual summer festival and flip pancakes with youth groups."
         );
 
-        NewsArticle.TriageDecision decision = geminiAIService.triage(article);
+        NewsArticle.Analysis analysis = geminiAIService.analyze(article);
 
-        assertNotNull(decision, "Triage decision should not be null");
-        assertFalse(decision.isRelevant(), "Community breakfast should not be marked as relevant policy");
-        assertTrue(decision.significanceScore() <= 5, "Significance score should be <= 5, was: " + decision.significanceScore());
+        assertNotNull(analysis, "Analysis should not be null");
+        assertFalse(analysis.isRelevant(), "Community breakfast should not be marked as relevant policy");
+        assertTrue(analysis.tldr() == null || analysis.tldr().isBlank() || analysis.tags().isEmpty());
     }
 }

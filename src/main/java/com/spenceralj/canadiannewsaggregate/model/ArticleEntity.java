@@ -24,7 +24,6 @@ public class ArticleEntity {
     private String title;
     private String sourceName;
     private Date publishedDate;
-    private int significanceScore;
 
     @Column(columnDefinition = "TEXT")
     private String aiSummary;

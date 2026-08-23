@@ -1,6 +1,7 @@
 package com.spenceralj.canadiannewsaggregate.model;
 
 import java.util.Date;
+import java.util.List;
 
 public record NewsArticle(
         String title,
@@ -14,8 +15,9 @@ public record NewsArticle(
             String url
     ) {}
 
-    public record TriageDecision(
+    public record Analysis(
             boolean isRelevant,
-            int significanceScore
+            String tldr,
+            List<String> tags
     ){}
 }
