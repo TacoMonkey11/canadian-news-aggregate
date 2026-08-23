@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canadian News Aggregate</title>
+</head>
+<body>
+
+    <h1>Canadian News & Policy Aggregate</h1>
+
+    <div th:if="${articles == null or #lists.isEmpty(articles)}">
+        <p>No articles found.</p>
+    </div>
+
+    <ul>
+        <li th:each="article : ${articles}">
+            <h2 th:text="${article.title}">Article Title</h2>
+            <p>
+                <strong>Source:</strong> <span th:text="${article.sourceName}">Source</span> |
+                <strong>Score:</strong> <span th:text="${article.significanceScore}">0</span> |
+                <strong>Date:</strong> <span th:text="${article.publishedDate}">Date</span>
+            </p>
+            <p th:if="${article.aiSummary != null}" th:text="${article.aiSummary}">Summary text...</p>
+            <a th:href="${article.link}" target="_blank">Read Original</a>
+
+            <hr>
+        </li>
+    </ul>
+
+</body>
+</html>
