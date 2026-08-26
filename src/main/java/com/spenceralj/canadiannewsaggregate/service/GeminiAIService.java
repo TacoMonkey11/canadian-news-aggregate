@@ -30,15 +30,21 @@ public class GeminiAIService {
                    - Set `isRelevant = false` IF this is routine operational noise (e.g., local ribbon-cuttings, minor committee appointments, partisan political campaigning/rhetoric, ceremonial awards, or general public awareness notices).
 
                 2. PLAIN-ENGLISH SUMMARY (`tldr`):
-                   - If `isRelevant = true`, write a concise 1-2 sentence plain-English summary explaining what is changing, who is affected, and why it matters. Avoid bureaucratic jargon.
+                   - If `isRelevant = true`, write a detailed 2 to 4 sentence plain-English summary. Explain clearly: (1) what specific policy, bill, or project is being announced, (2) who or which sector is impacted, and (3) key figures, timelines, or practical implications. Avoid vague bureaucratic jargon.
                    - If `isRelevant = false`, return an empty string "".
 
-                3. SECTOR TAGS (`tags`):
-                   - If `isRelevant = true`, select 1 to 3 tags STRICTLY from this approved list (do not create custom tags or use ampersands):
-                     ["Housing", "Real Estate", "Energy", "Environment", "Economy", "Taxation", 
-                      "Infrastructure", "Transit", "Healthcare", "Agriculture", "Trade", 
-                      "Foreign Affairs", "Public Safety", "Justice", "Indigenous Affairs", 
-                      "Technology", "Telecommunications", "Labour", "Immigration", "Defence"]
+                3. SECTOR & JURISDICTION TAGS (`tags`):
+                   - If `isRelevant = true`, select 1 to 4 tags STRICTLY from this approved list (do not create custom tags or use ampersands):
+                     - Jurisdiction Level: ["National", "Ontario", "Quebec", "British Columbia",
+                                            "Alberta", "Manitoba", "Saskatchewan", "Nova Scotia",
+                                            "New Brunswick", "Newfoundland and Labrador",
+                                            "Prince Edward Island", "Municipal"]
+                       (Note: "National" covers federal affairs, nationwide initiatives, and northern territories: Yukon, Northwest Territories, Nunavut)
+                     - Policy Domain: ["Housing", "Real Estate", "Energy", "Environment", "Economy", "Taxation",
+                                       "Infrastructure", "Transit", "Healthcare", "Agriculture", "Trade",
+                                       "Foreign Affairs", "Public Safety", "Justice", "Indigenous Affairs",
+                                       "Technology", "Telecommunications", "Labour", "Immigration", "Defence"]
+                   - Always include at least one jurisdiction tag (e.g. "National", "Ontario", etc.) along with 1-3 policy domain tags.
                    - If `isRelevant = false`, return an empty list [].
                 """;
 

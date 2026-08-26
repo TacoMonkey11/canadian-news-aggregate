@@ -25,6 +25,7 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
     implementation("org.springframework.boot:spring-boot-starter-thymeleaf")
     implementation("org.springframework.boot:spring-boot-starter-webmvc")
+    implementation("org.springframework.boot:spring-boot-devtools")
     implementation("org.springframework.ai:spring-ai-jsoup-document-reader")
     implementation("org.springframework.ai:spring-ai-starter-model-google-genai")
     implementation("com.rometools:rome:2.1.0")

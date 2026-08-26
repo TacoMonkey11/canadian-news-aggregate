@@ -4,7 +4,9 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Getter
@@ -24,12 +26,19 @@ public class ArticleEntity {
     private String title;
     private String sourceName;
     private Date publishedDate;
+    private boolean isRelevant;
 
     @Column(columnDefinition = "TEXT")
     private String aiSummary;
 
     @Column(columnDefinition = "TEXT")
     private String rawText;
+
+    @ElementCollection(fetch = FetchType.EAGER)
+    @CollectionTable(name = "article_tags", joinColumns = @JoinColumn(name = "article_id"))
+    @Column(name = "tag")
+    @Builder.Default
+    private List<String> tags = new ArrayList<>();
 
     private LocalDateTime createdAt;
 

@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
     <title>Canadian News Aggregate</title>
 </head>
 <body>
@@ -13,19 +14,26 @@
         <p>No articles found.</p>
     </div>
 
-    <ul>
-        <li th:each="article : ${articles}">
-            <h2 th:text="${article.title}">Article Title</h2>
-            <p>
-                <strong>Source:</strong> <span th:text="${article.sourceName}">Source</span> |
-                <strong>Date:</strong> <span th:text="${article.publishedDate}">Date</span>
-            </p>
-            <p th:if="${article.aiSummary != null}" th:text="${article.aiSummary}">Summary text...</p>
-            <a th:href="${article.link}" target="_blank">Read Original</a>
 
-            <hr>
-        </li>
-    </ul>
+    <div class="container">
+        <main class="feed">
+            <ul style="list-style: none;">
+                <li th:each="article : ${articles}">
+                    <h2 th:text="${article.title}">Article Title</h2>
+                    <p>
+                        <strong>Source:</strong> <span class="deets" th:text="${article.sourceName}">Source</span> |
+                        <strong>Date:</strong> <span class="deets" th:text="${article.publishedDate}">Date</span> |
+                        <strong>Tags:</strong> <span class="deets" th:text="${article.getTags()}"></span>
+                    </p>
+                    <p th:if="${article.aiSummary != null}" th:text="${article.aiSummary}">Summary text...</p>
+                    <a th:href="${article.link}" target="_blank">Read Original</a>
+                </li>
+            </ul>
+        </main>
+        <aside class="sidebar">
+            Yo bro my name is joe
+        </aside>
+    </div>
 
 </body>
 </html>

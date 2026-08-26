@@ -28,7 +28,9 @@ class ArticleRepositoryTest {
                 .link(testLink)
                 .sourceName("Infrastructure Canada")
                 .publishedDate(new Date())
+                .isRelevant(true)
                 .aiSummary("Federal government announces major highway and transit investments.")
+                .tags(List.of("National", "Infrastructure"))
                 .createdAt(LocalDateTime.now())
                 .build();
 
@@ -40,7 +42,15 @@ class ArticleRepositoryTest {
         assertFalse(articleRepository.existsByLink("https://nonexistent-link.com"), "existsByLink should return false for unknown link");
 
         // Test findAllByOrderByPublishedDateDesc
-        List<ArticleEntity> allArticles = articleRepository.findAllByOrderByPublishedDateDesc();
+        List<ArticleEntity> allArticles = articleRepository.findAllByIsRelevantTrueOrderByPublishedDateDesc();
         assertFalse(allArticles.isEmpty(), "Should retrieve saved articles");
+
+        // Test findAllByTag with multiple matching tags
+        List<ArticleEntity> matchedTwoTags = articleRepository.findAllByTag(List.of("National", "Infrastructure"), 2);
+        assertFalse(matchedTwoTags.isEmpty(), "Should find article with both National and Infrastructure tags");
+
+        // Test findAllByTag with non-matching tag combination
+        List<ArticleEntity> noMatch = articleRepository.findAllByTag(List.of("National", "Healthcare"), 2);
+        assertTrue(noMatch.isEmpty(), "Should not match when an article lacks one of the required tags");
     }
 }

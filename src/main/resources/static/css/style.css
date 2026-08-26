@@ -1,0 +1,101 @@
+:root {
+    --nord0: #2e3440;
+    --nord1: #3b4252;
+    --nord2: #434c5e;
+    --nord3: #4c566a;
+    --nord4: #d8dee9;
+    --nord5: #e5e9f0;
+    --nord6: #eceff4;
+    --nord7: #8fbcbb;
+    --nord8: #88c0d0;
+    --nord9: #81a1c1;
+    --nord10: #5e81ac;
+    --nord11: #bf616a;
+    --nord12: #d08770;
+    --nord13: #ebcb8b;
+    --nord14: #a3be8c;
+    --nord15: #b48ead;
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--nord0);
+    color: var(--nord6);
+    min-height: 100vh;
+    line-height: 1.5;
+    font-family: Arial, Helvetica, "Liberation Sans", sans-serif;
+    -webkit-font-smoothing: antialiased;
+}
+
+img, picture, video, canvas, svg {
+    display: block;
+    max-width: 100%;
+}
+input, button, textarea, select {
+    font: inherit;
+}
+
+a:link {
+    color: var(--nord8);
+    text-decoration: none;
+}
+
+a:visited {
+    color: var(--nord10)
+}
+a:hover {
+    color: var(--nord7)
+}
+a:active {
+    color: var(--nord15)
+}
+
+h1, h2 {
+    color: var(--nord8)
+}
+
+h1 {
+    margin: 1.5rem;
+    text-align: center;
+}
+
+hr {
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    color: var(--nord6)
+}
+
+strong {
+    color: var(--nord12)
+}
+
+li {
+    margin-bottom: 1rem;
+}
+
+.deets {
+    color: var(--nord14)
+}
+
+.container {
+    margin-left: 1rem;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 2rem;
+    align-items: start;
+}
+
+.sidebar {
+    position: sticky;
+    top: 1.5rem;
+}
+
+.feed,
+.sidebar {
+    min-width: 0;
+}
