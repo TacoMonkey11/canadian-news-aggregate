@@ -3,7 +3,9 @@ package com.spenceralj.canadiannewsaggregate.model;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -41,6 +43,11 @@ public class ArticleEntity {
     private List<String> tags = new ArrayList<>();
 
     private LocalDateTime createdAt;
+
+    @Transient
+    public boolean isToday() {
+        return LocalDate.now().equals(LocalDate.ofInstant(this.publishedDate.toInstant(), ZoneId.systemDefault()));
+    }
 
 }
 

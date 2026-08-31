@@ -3,35 +3,78 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" th:href="@{/css/style.css(v=3)}">
     <title>Canadian News Aggregate</title>
 </head>
 <body>
 
-    <h1>Canadian News & Policy Aggregate</h1>
-
-    <div th:if="${articles == null or #lists.isEmpty(articles)}">
-        <p>No articles found.</p>
-    </div>
-
-
     <div class="container">
         <main class="feed">
-            <ul style="list-style: none;">
+            <div th:if="${articles == null or #lists.isEmpty(articles)}">
+                <p>No articles found.</p>
+            </div>
+
+            <ul>
                 <li th:each="article : ${articles}">
-                    <h2 th:text="${article.title}">Article Title</h2>
-                    <p>
-                        <strong>Source:</strong> <span class="deets" th:text="${article.sourceName}">Source</span> |
-                        <strong>Date:</strong> <span class="deets" th:text="${article.publishedDate}">Date</span> |
-                        <strong>Tags:</strong> <span class="deets" th:text="${article.getTags()}"></span>
+                    <h2>
+                        <a th:href="${article.link}"
+                           th:text="${article.title}"
+                           target="_blank"
+                           rel="noopener noreferrer">Article Title</a>
+                    </h2>
+                    <h3 th:if="${article.isToday()}">This article is new today!</h3>
+                    <p class="deets">
+                        <strong>Source:</strong> <span th:text="${article.sourceName}">Source</span> <br>
+                        <strong>Date:</strong> <span th:text="${article.publishedDate}">Date</span> <br>
+                        <strong>Tags:</strong> <span th:text="${article.getTags()}"></span>
                     </p>
                     <p th:if="${article.aiSummary != null}" th:text="${article.aiSummary}">Summary text...</p>
-                    <a th:href="${article.link}" target="_blank">Read Original</a>
+                    <a th:href="${article.link}" target="_blank" rel="noopener noreferrer">Read Original</a>
                 </li>
             </ul>
         </main>
         <aside class="sidebar">
-            Yo bro my name is joe
+            <h1>Canadian News & Policy Aggregate</h1>
+            <search>
+                <form th:action="@{/}" method="GET">
+                    <input th:if="${activeTags != null and !activeTags.isEmpty()}"
+                           type="hidden"
+                           name="tags"
+                           th:value="${#strings.listJoin(activeTags, ',')}">
+                    <label>
+                        <input type="search"
+                                name="q"
+                                th:value="${query}"
+                                placeholder="Refine your search...">
+                    </label>
+                    <div class="limit-selector">
+                        <label for="limit-select">Articles per page:</label>
+                        <select id="limit-select" name="limit" onchange="this.form.submit()">
+                            <option value="10" th:selected="${limit == 10}">10</option>
+                            <option value="20" th:selected="${limit == 20 or limit == null}">20 (default)</option>
+                            <option value="30" th:selected="${limit == 30}">30</option>
+                            <option value="40" th:selected="${limit == 40}">40</option>
+                            <option value="50" th:selected="${limit == 50}">50</option>
+                        </select>
+                    </div>
+                </form>
+            </search>
+
+            <div class="tags">
+                <a th:each="tag : ${availableTags}"
+                   th:text="${tag}"
+                   th:href="@{${controller.buildUrlParams(activeTags, tag, query, limit)}}"
+                   class="tag-pill"
+                   th:classappend="${activeTags.contains(tag)} ? 'active' : ''">
+                    Tag
+                </a>
+            </div>
+
+            <div class="stats">
+                <p><strong>Total Articles Processed: </strong><span th:text="${totalArticles}">0</span></p>
+                <p><strong>Articles Deemed Relevant: </strong><span th:text="${totalRelevantArticles}">0</span></p>
+            </div>
+            <footer>Made by Spencer Al-Jbouri</footer>
         </aside>
     </div>
 

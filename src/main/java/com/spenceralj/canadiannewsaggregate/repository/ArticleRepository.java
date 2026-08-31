@@ -9,15 +9,23 @@ import java.util.List;
 
 public interface ArticleRepository extends JpaRepository<ArticleEntity, Long> {
     boolean existsByLink(String link);
-    List<ArticleEntity> findAllByIsRelevantTrueOrderByPublishedDateDesc();
-
     @Query("""
            SELECT a FROM ArticleEntity a
            JOIN a.tags t
-           WHERE a.isRelevant = true AND t IN (:tags)
+           WHERE a.isRelevant = true
+                      AND (:query IS NULL OR :query = ''
+                                 OR LOWER(a.title) LIKE LOWER(CONCAT('%', :query, '%'))
+                                 OR LOWER(a.aiSummary) LIKE LOWER(CONCAT('%', :query, '%')))
+                      AND (:tagCount = 0  OR t IN (:tags))
            GROUP BY a
-           HAVING COUNT(DISTINCT t) = :tagCount
+           HAVING (:tagCount = 0) OR COUNT(DISTINCT t) = :tagCount
            ORDER BY a.publishedDate DESC
+           LIMIT :limit
            """)
-    List<ArticleEntity> findAllByTag(@Param("tags") List<String> tags, @Param("tagCount") int tagCount);
+    List<ArticleEntity> findAllMatching(@Param("tags") List<String> tags, @Param("tagCount") int tagCount, @Param("query") String query, @Param("limit") int limit);
+
+    @Query("SELECT DISTINCT t FROM ArticleEntity a JOIN a.tags t WHERE a.isRelevant = true ORDER BY t ASC")
+    List<String> findAllTags();
+
+    int countArticleEntitiesByIsRelevantIsTrue();
 }
