@@ -1,5 +1,5 @@
 # Build Stage
-FROM gradle:8.10-jdk17 AS builder
+FROM --platform=$BUILDPLATFORM gradle:8.10-jdk17 AS builder
 WORKDIR /app
 COPY build.gradle.kts settings.gradle.kts gradlew ./
 COPY gradle ./gradle
