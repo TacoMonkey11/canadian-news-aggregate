@@ -29,7 +29,7 @@ dependencies {
     implementation("org.springframework.ai:spring-ai-jsoup-document-reader")
     implementation("org.springframework.ai:spring-ai-starter-model-google-genai")
     implementation("com.rometools:rome:2.1.0")
-    implementation("org.jsoup:jsoup:1.23.1")
+    implementation("org.htmlunit:htmlunit:5.4.0")
     compileOnly("org.projectlombok:lombok")
     annotationProcessor("org.projectlombok:lombok")
     runtimeOnly("org.postgresql:postgresql")

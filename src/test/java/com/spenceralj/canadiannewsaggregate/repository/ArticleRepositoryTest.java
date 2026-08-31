@@ -41,16 +41,24 @@ class ArticleRepositoryTest {
         assertTrue(articleRepository.existsByLink(testLink), "existsByLink should return true for saved article");
         assertFalse(articleRepository.existsByLink("https://nonexistent-link.com"), "existsByLink should return false for unknown link");
 
-        // Test findAllByOrderByPublishedDateDesc
-        List<ArticleEntity> allArticles = articleRepository.findAllByIsRelevantTrueOrderByPublishedDateDesc();
+        // Test findAllMatching with no filters
+        List<ArticleEntity> allArticles = articleRepository.findAllMatching(List.of(), 0, null, 20);
         assertFalse(allArticles.isEmpty(), "Should retrieve saved articles");
 
-        // Test findAllByTag with multiple matching tags
-        List<ArticleEntity> matchedTwoTags = articleRepository.findAllByTag(List.of("National", "Infrastructure"), 2);
+        // Test findAllMatching with multiple matching tags
+        List<ArticleEntity> matchedTwoTags = articleRepository.findAllMatching(List.of("National", "Infrastructure"), 2, null, 20);
         assertFalse(matchedTwoTags.isEmpty(), "Should find article with both National and Infrastructure tags");
 
-        // Test findAllByTag with non-matching tag combination
-        List<ArticleEntity> noMatch = articleRepository.findAllByTag(List.of("National", "Healthcare"), 2);
+        // Test findAllMatching with non-matching tag combination
+        List<ArticleEntity> noMatch = articleRepository.findAllMatching(List.of("National", "Healthcare"), 2, null, 20);
         assertTrue(noMatch.isEmpty(), "Should not match when an article lacks one of the required tags");
+
+        // Test findAllMatching with search query
+        List<ArticleEntity> matchedSearch = articleRepository.findAllMatching(List.of(), 0, "Infrastructure", 20);
+        assertFalse(matchedSearch.isEmpty(), "Should find article by keyword in title");
+
+        // Test findAllTags
+        List<String> tags = articleRepository.findAllTags();
+        assertFalse(tags.isEmpty(), "Should return distinct tags list");
     }
 }

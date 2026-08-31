@@ -60,10 +60,4 @@ public class NewsController {
 
         return builder.toUriString();
     }
-
-    //TODO
-    // Polish for deployment
-    // Add a shit ton more feeds
-    // Double the amount of tags
-
 }

@@ -1,32 +1,38 @@
-Ministry of Agriculture, Food and Agribusiness | https://news.ontario.ca/omafa/en/rss/news.rss
-Ministry of Children, Community and Social Services | https://news.ontario.ca/mccss/en/rss/news.rss
-Ministry of Citizenship and Multiculturalism | https://news.ontario.ca/mcm/en/rss/news.rss
-Ministry of Colleges, Universities, Research Excellence and Security | https://news.ontario.ca/mcures/en/rss/news.rss
-Ministry of Economic Development, Job Creation and Trade | https://news.ontario.ca/medjct/en/rss/news.rss
-Ministry of Education | https://news.ontario.ca/edu/en/rss/news.rss
-Ministry of Emergency Preparedness and Response | https://news.ontario.ca/mepr/en/rss/news.rss
-Ministry of Energy and Mines | https://news.ontario.ca/mem/en/rss/news.rss
-Ministry of Finance | https://news.ontario.ca/mof/en/rss/news.rss
-Ministry of Francophone Affairs | https://news.ontario.ca/mfa/en/rss/news.rss
-Ministry of Health | https://news.ontario.ca/moh/en/rss/news.rss
-Ministry of Indigenous Affairs and First Nations Economic Reconciliation | https://news.ontario.ca/iafner/en/rss/news.rss
-Ministry of Infrastructure | https://news.ontario.ca/moi/en/rss/news.rss
-Ministry of Intergovernmental Affairs | https://news.ontario.ca/mia/en/rss/news.rss
-Ministry of Labour, Immigration, Training and Skills Development | https://news.ontario.ca/mlitsd/en/rss/news.rss
-Ministry of Long-Term Care | https://news.ontario.ca/mltc/en/rss/news.rss
-Ministry of Municipal Affairs and Housing | https://news.ontario.ca/mmah/en/rss/news.rss
-Ministry of Natural Resources | https://news.ontario.ca/mnr/en/rss/news.rss
-Ministry of Northern Economic Development and Growth | https://news.ontario.ca/mnedg/en/rss/news.rss
-Ministry of Public and Business Service Delivery and Procurement | https://news.ontario.ca/mpbsdp/en/rss/news.rss
-Ministry of Red Tape Reduction | https://news.ontario.ca/mrtr/en/rss/news.rss
-Ministry of Rural Affairs | https://news.ontario.ca/mra/en/rss/news.rss
-Ministry of Sport | https://news.ontario.ca/sport/en/rss/news.rss
-Ministry of Tourism, Culture and Gaming | https://news.ontario.ca/mtcg/en/rss/news.rss
-Ministry of Transportation | https://news.ontario.ca/mto/en/rss/news.rss
-Ministry of the Attorney General | https://news.ontario.ca/mag/en/rss/news.rss
-Ministry of the Environment Conservation and Parks | https://news.ontario.ca/mecp/en/rss/news.rss
-Ministry of the Solicitor General | https://news.ontario.ca/solgen/en/rss/news.rss
-Ministry for Seniors and Accessibility | https://news.ontario.ca/msaa/en/rss/news.rss
-Premier's Office | https://news.ontario.ca/opo/en/rss/news.rss
-Treasury Board Secretariat | https://news.ontario.ca/tbs/en/rss/news.rss
-Women's Social and Economic Opportunity | https://news.ontario.ca/wseo/en/rss/news.rss
+# --- Federal & National ---
+Parliament of Canada (LEGISinfo) | https://www.parl.ca/legisinfo/en/bills/rss
+CBC Politics | https://rss.cbc.ca/lineup/politics.xml
+Global News Politics | https://globalnews.ca/politics/feed/
+
+# --- Ontario (Official Government Newsrooms) ---
+Ontario - Premier's Office | https://news.ontario.ca/opo/en/rss/news.rss
+Ontario - Ministry of Finance | https://news.ontario.ca/mof/en/rss/news.rss
+Ontario - Ministry of Municipal Affairs and Housing | https://news.ontario.ca/mmah/en/rss/news.rss
+Ontario - Ministry of Transportation | https://news.ontario.ca/mto/en/rss/news.rss
+Ontario - Ministry of Infrastructure | https://news.ontario.ca/moi/en/rss/news.rss
+Ontario - Ministry of Energy and Mines | https://news.ontario.ca/mem/en/rss/news.rss
+Ontario - Ministry of Health | https://news.ontario.ca/moh/en/rss/news.rss
+Ontario - Ministry of Long-Term Care | https://news.ontario.ca/mltc/en/rss/news.rss
+Ontario - Ministry of Education | https://news.ontario.ca/edu/en/rss/news.rss
+Ontario - Ministry of Colleges and Universities | https://news.ontario.ca/mcures/en/rss/news.rss
+Ontario - Ministry of Labour, Immigration, Training and Skills Development | https://news.ontario.ca/mlitsd/en/rss/news.rss
+Ontario - Ministry of Economic Development, Job Creation and Trade | https://news.ontario.ca/medjct/en/rss/news.rss
+Ontario - Ministry of the Attorney General | https://news.ontario.ca/mag/en/rss/news.rss
+Ontario - Ministry of the Solicitor General | https://news.ontario.ca/solgen/en/rss/news.rss
+Ontario - Ministry of the Environment, Conservation and Parks | https://news.ontario.ca/mecp/en/rss/news.rss
+Ontario - Ministry of Indigenous Affairs and First Nations Economic Reconciliation | https://news.ontario.ca/iafner/en/rss/news.rss
+
+# --- Official Provincial Government Newsrooms ---
+British Columbia - Government News | https://news.gov.bc.ca/feed
+British Columbia - Office of the Premier | https://news.gov.bc.ca/ministries/office-of-the-premier/feed
+Saskatchewan - Government News | https://www.saskatchewan.ca/Feeds/NewsFeed.ashx
+Quebec - Fil de presse gouvernemental | https://www.quebec.ca/fil-de-presse.rss
+Newfoundland & Labrador - Government Releases | https://www.gov.nl.ca/releases/feed/
+
+# --- Regional Provincial Policy & Legislature Feeds ---
+Alberta - Provincial Politics | https://globalnews.ca/tag/alberta-politics/feed/
+Alberta - Edmonton Journal (Legislature & Capital) | https://edmontonjournal.com/feed
+Manitoba - Provincial Politics | https://globalnews.ca/tag/manitoba-politics/feed/
+Nova Scotia - Halifax & Regional News | https://globalnews.ca/halifax/feed/
+New Brunswick - Regional News | https://globalnews.ca/new-brunswick/feed/
+Prince Edward Island - Regional News | https://rss.cbc.ca/lineup/canada-pei.xml
+Territories - Northern Affairs (Yukon, NWT, Nunavut) | https://rss.cbc.ca/lineup/canada-north.xml
