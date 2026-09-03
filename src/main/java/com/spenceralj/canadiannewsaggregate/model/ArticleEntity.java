@@ -46,7 +46,7 @@ public class ArticleEntity {
 
     @Transient
     public boolean isToday() {
-        return LocalDate.now().equals(LocalDate.ofInstant(this.publishedDate.toInstant(), ZoneId.systemDefault()));
+        return LocalDate.now(ZoneId.of("America/Toronto")).equals(LocalDate.ofInstant(this.publishedDate.toInstant(), ZoneId.of("America/Toronto")));
     }
 
 }
