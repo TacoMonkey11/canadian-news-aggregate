@@ -32,6 +32,10 @@ public class RSSFetcherService {
             for (SyndEntry entry : feed.getEntries()) {
                 String description = entry.getDescription() != null ? entry.getDescription().getValue() : "";
                 Date date = entry.getUpdatedDate() != null ? entry.getUpdatedDate() : entry.getPublishedDate();
+                Date now = new Date();
+                if (date == null || date.after(now)) {
+                    date = now;
+                }
                 NewsArticle article = new NewsArticle(entry.getTitle(), entry.getLink(), source, date, description);
 
                 articles.add(article);

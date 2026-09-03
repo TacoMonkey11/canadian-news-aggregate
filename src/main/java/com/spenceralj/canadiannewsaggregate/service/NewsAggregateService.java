@@ -52,12 +52,18 @@ public class NewsAggregateService {
                     log.info("[Not Relevant - Recorded] {}", article.title());
                 }
 
+                Date now = new Date();
+                Date publishedDate = article.publishedDate();
+                if (publishedDate == null || publishedDate.after(now)) {
+                    publishedDate = now;
+                }
+
                 articleRepository.save(ArticleEntity.builder()
                         .isRelevant(decision.isRelevant())
                         .link(article.link())
                         .title(article.title())
                         .sourceName(source.name())
-                        .publishedDate(article.publishedDate())
+                        .publishedDate(publishedDate)
                         .aiSummary(decision.tldr())
                         .tags(decision.tags())
                         .createdAt(LocalDateTime.now())
